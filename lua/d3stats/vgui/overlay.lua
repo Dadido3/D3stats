@@ -7,7 +7,7 @@ function PANEL:Init()
 	self.Progress:SetSize( 200, 10 )
 	
 	self.Label = vgui.Create( "DLabel", self )
-	self.Label:SetFont("ZSHUDFontTiny")
+	self.Label:SetFont(d3stats.Font_Overlay)
 	self.Label:SetPos( 10, 25 ) -- Set the position of the label
 	self:StatsUpdate( 0, 1 )
 	--self.Label:SetDark( 1 ) -- Set the colour of the text inside the label to a darker one

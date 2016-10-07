@@ -6,9 +6,10 @@ Settings and level definitions are stored in here
 
 -- Permissions
 --	AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyways
+--  Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4
 d3stats.Permissions = {
-	["Buy_Hammer"] = { AllowIfLessThan = 2 },
-	["Use_Hammer"] = { AllowIfLessThan = 2 },
+	["Buy_Hammer"] = { AllowIfLessThan = 2, Team = 4 },
+	["Use_Hammer"] = { AllowIfLessThan = 2, Team = 4 },
 }
 
 -- Levels, please sort by XP
@@ -54,3 +55,27 @@ d3stats.ZombieKilledHuman_Fraction = 1.0	-- Amount of XP a zombie gets of the ki
 d3stats.ZombieKilledHuman_Static = 100		-- Amount of XP a zombie gets for killing a human
 d3stats.ZombieKilledHuman_Max = 1000		-- Upper XP reward clamp
 d3stats.ZombieKilledHuman_Min = 0			-- Lower XP reward clamp
+
+-- Fonts
+if CLIENT then
+	surface.CreateFont( "D3Stats_OverlayFont", {
+		font = "Typenoksidi",	
+		extended = true,
+		size = 16,
+		weight = 0,
+		blursize = 0,
+		scanlines = 0,
+		antialias = true,
+		underline = false,
+		italic = false,
+		strikeout = false,
+		symbol = false,
+		rotary = false,
+		shadow = false,
+		additive = false,
+		outline = true,
+	} )
+
+	d3stats.Font_Overlay = "D3Stats_OverlayFont"
+	d3stats.Font_TargetID = "D3Stats_OverlayFont"
+end

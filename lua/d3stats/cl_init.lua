@@ -14,3 +14,4 @@ include( "vgui/overlay.lua" )
 hook.Add( "Initialize", "D3Stats_Init", function ()
 	d3stats.Overlay_Init()
 end )
+

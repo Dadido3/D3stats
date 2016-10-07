@@ -32,13 +32,15 @@ end
 
 -- Count the amount of online players who have the permission
 if SERVER then
-	function d3stats.CountPermissionPlayers( Permission )
+	function d3stats.CountPermissionPlayers( Permission, Team )
 		local Counter = 0
 		
 		local players = player.GetAll()
 		for key, ply in pairs( players ) do
-			if d3stats.LevelCheckPermission( ply:D3Stats_GetLevel(), Permission ) == true then
-				Counter = Counter + 1
+			if Team == nil or pl:Team() == Team then
+				if d3stats.LevelCheckPermission( ply:D3Stats_GetLevel(), Permission ) == true then
+					Counter = Counter + 1
+				end
 			end
 		end
 		
