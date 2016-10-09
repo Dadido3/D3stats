@@ -2,7 +2,7 @@
 function d3stats.CalculateLevel( XP )
 	local Level = 1
 	
-	for key, value in pairs(d3stats.Levels) do
+	for key, value in pairs( d3stats.Levels ) do
 		if value.XP_needed <= XP then
 			Level = key
 		else
@@ -17,7 +17,12 @@ end
 function d3stats.LevelCheckPermission( Level, Permission )
 	local Granted = false
 	
-	for key, value in pairs(d3stats.Levels) do
+	-- If the permission is not on the list, allow it
+	if not d3stats.Permissions[Permission] then
+		return true
+	end
+	
+	for key, value in pairs( d3stats.Levels ) do
 		if key <= Level then
 			if value.Permissions and value.Permissions[Permission] then
 				Granted = value.Permissions[Permission]
@@ -30,6 +35,23 @@ function d3stats.LevelCheckPermission( Level, Permission )
 	return Granted
 end
 
+-- Returns what level is needed for the given permission
+function d3stats.GetPermissionLevel( Permission )
+	local Level
+	
+	if not d3stats.Permissions[Permission] then
+		return 1
+	end
+	
+	for key, value in pairs( d3stats.Levels ) do
+		if value.Permissions and value.Permissions[Permission] then
+			return key
+		end
+	end
+	
+	return nil
+end
+
 -- Count the amount of online players who have the permission
 if SERVER then
 	function d3stats.CountPermissionPlayers( Permission, Team )
@@ -37,7 +59,7 @@ if SERVER then
 		
 		local players = player.GetAll()
 		for key, ply in pairs( players ) do
-			if Team == nil or pl:Team() == Team then
+			if Team == nil or ply:Team() == Team then
 				if d3stats.LevelCheckPermission( ply:D3Stats_GetLevel(), Permission ) == true then
 					Counter = Counter + 1
 				end

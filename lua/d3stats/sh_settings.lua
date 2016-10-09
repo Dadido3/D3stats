@@ -5,47 +5,48 @@ Settings and level definitions are stored in here
 ]]
 
 -- Permissions
---	AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyways
---  Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4
+--  Everything not in this list will be allowed by default
+--	AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyway
+--  Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4, 
 d3stats.Permissions = {
-	["Buy_Hammer"] = { AllowIfLessThan = 2, Team = 4 },
-	["Use_Hammer"] = { AllowIfLessThan = 2, Team = 4 },
+	["Buy_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
+	["Use_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
 }
 
 -- Levels, please sort by XP
 d3stats.Levels = {
-	{ XP_needed =       0, Name = "Kleiner" },
-	{ XP_needed =     500, Name = "Lesser Kleiner" },
-	{ XP_needed =    1000, Name = "Dayfly" },
-	{ XP_needed =    2000, Name = "Apprentice", Permissions = { ["Buy_Hammer"] = true, ["Use_Hammer"] = true } },
-	{ XP_needed =    3000, Name = "Adventurer" },
-	{ XP_needed =    4000, Name = "Scout" },
-	{ XP_needed =    5000, Name = "Guardian" },
-	{ XP_needed =    6000, Name = "Fighter" },
-	{ XP_needed =    7000, Name = "Brawler" },
-	{ XP_needed =    8000, Name = "Scrapper" },
-	{ XP_needed =    9000, Name = "Skirmisher" },
-	{ XP_needed =   10000, Name = "Battler" },
-	{ XP_needed =   15000, Name = "Marauder" },
-	{ XP_needed =   20000, Name = "Slayer" },
-	{ XP_needed =   25000, Name = "Mercenary" },
-	{ XP_needed =   30000, Name = "Swordsman" },
-	{ XP_needed =   35000, Name = "Freelancer" },
-	{ XP_needed =   40000, Name = "Swashbuckler" },
-	{ XP_needed =   45000, Name = "Vanquisher" },
-	{ XP_needed =   50000, Name = "Exemplar" },
-	{ XP_needed =   60000, Name = "Conqueror" },
-	{ XP_needed =   70000, Name = "Specialist" },
-	{ XP_needed =   80000, Name = "Lieutenant" },
-	{ XP_needed =   90000, Name = "Captain" },
-	{ XP_needed =  100000, Name = "Major" },
-	{ XP_needed =  133333, Name = "Colonel" },
-	{ XP_needed =  166666, Name = "General" },
-	{ XP_needed =  200000, Name = "Champion" },
-	{ XP_needed =  250000, Name = "Hero" },
-	{ XP_needed =  300000, Name = "Legend" },
-	{ XP_needed =  500000, Name = "Demigod" },
-	{ XP_needed = 1000000, Name = "God" },
+	{ XP_needed =    500, Name = "Citizen" },
+	{ XP_needed =   1370, Name = "Survivor" },
+	{ XP_needed =   2612, Name = "Rogue" },
+	{ XP_needed =   4225, Name = "Engineer", Permissions = { ["Buy_Hammer"] = true, ["Use_Hammer"] = true } },
+	{ XP_needed =   6209, Name = "Scout" },
+	{ XP_needed =   8564, Name = "Officer" },
+	{ XP_needed =  11290, Name = "Guardian" },
+	{ XP_needed =  14387, Name = "Fighter" },
+	{ XP_needed =  17854, Name = "Brawler" },
+	{ XP_needed =  21693, Name = "Scrapper" },
+	{ XP_needed =  25903, Name = "Skirmisher" },
+	{ XP_needed =  30483, Name = "Battler" },
+	{ XP_needed =  35435, Name = "Marauder" },
+	{ XP_needed =  40758, Name = "Slayer" },
+	{ XP_needed =  46451, Name = "Mercenary" },
+	{ XP_needed =  52516, Name = "Swordsman" },
+	{ XP_needed =  58951, Name = "Freelancer" },
+	{ XP_needed =  65758, Name = "Swashbuckler" },
+	{ XP_needed =  72935, Name = "Vanquisher" },
+	{ XP_needed =  80483, Name = "Exemplar" },
+	{ XP_needed =  88403, Name = "Conqueror" },
+	{ XP_needed =  96693, Name = "Specialist" },
+	{ XP_needed = 105354, Name = "Lieutenant" },
+	{ XP_needed = 114387, Name = "Captain" },
+	{ XP_needed = 123790, Name = "Major" },
+	{ XP_needed = 133564, Name = "Colonel" },
+	{ XP_needed = 143709, Name = "General" },
+	{ XP_needed = 154225, Name = "Champion" },
+	{ XP_needed = 165112, Name = "Hero" },
+	{ XP_needed = 176370, Name = "Legend" },
+	{ XP_needed = 188000, Name = "Demigod" },
+	{ XP_needed = 200000, Name = "God" },
 }
 
 d3stats.PlayerPointsAdded_Limit = 200		-- Ignore all "PlayerPointsAdded" callbacks above this XP value
@@ -56,12 +57,39 @@ d3stats.ZombieKilledHuman_Static = 100		-- Amount of XP a zombie gets for killin
 d3stats.ZombieKilledHuman_Max = 1000		-- Upper XP reward clamp
 d3stats.ZombieKilledHuman_Min = 0			-- Lower XP reward clamp
 
--- Fonts
+-- Messages TODO: Multilanguage
+d3stats.Disallow_Hold_Hammer = "You can't use the hammer until you have reached level %i"
+d3stats.MapStats_Zero = "We are playing %s."									-- Message to players who just joined
+d3stats.MapStats = "We are playing %s. Humans won %i of %i times (%.1f%%)"		-- Message to players who just joined (With statistics)
+d3stats.MapStats_End = "%s has been won %i of %i times (%.1f%%)"				-- Message to all players at the end of the round (With statistics)
+
 if CLIENT then
-	surface.CreateFont( "D3Stats_OverlayFont", {
-		font = "Typenoksidi",	
-		extended = true,
-		size = 16,
+	-- Overlay positions
+	d3stats.Overlay_X = 0
+	d3stats.Overlay_Y = 80 * math.Clamp(ScrH() / 1080, 0.6, 1) -- This needs to be redone
+	
+	-- Fonts
+	surface.CreateFont( "D3Stats_OverlayFont_XP", {
+		font = "Ghoulish Fright AOE",
+		extended = false,
+		size = 22,
+		weight = 0,
+		blursize = 0,
+		scanlines = 0,
+		antialias = true,
+		underline = false,
+		italic = false,
+		strikeout = false,
+		symbol = false,
+		rotary = false,
+		shadow = false,
+		additive = false,
+		outline = false,
+	} )
+	surface.CreateFont( "D3Stats_OverlayFont_Level", {
+		font = "Haunt AOE",
+		extended = false,
+		size = 26,
 		weight = 0,
 		blursize = 0,
 		scanlines = 0,
@@ -75,7 +103,8 @@ if CLIENT then
 		additive = false,
 		outline = true,
 	} )
-
-	d3stats.Font_Overlay = "D3Stats_OverlayFont"
-	d3stats.Font_TargetID = "D3Stats_OverlayFont"
+	
+	d3stats.Font_Overlay_XP = "D3Stats_OverlayFont_XP"
+	d3stats.Font_Overlay_Level = "D3Stats_OverlayFont_Level"
+	d3stats.Font_TargetID = "ZSHUDFontTiny"			-- Use ZS Font
 end

@@ -21,6 +21,8 @@ include( "sh_level.lua" )
 include( "sh_concommand.lua" )
 
 include( "gamemodes/sv_zombiesurvival.lua" )
+include( "sv_storage.lua" )
+include( "sv_map.lua" )
 include( "sv_network.lua" )
 
 hook.Add( "PlayerInitialSpawn", "D3Stats_PlayerSpawn", function ( ply )
@@ -30,6 +32,15 @@ hook.Add( "PlayerInitialSpawn", "D3Stats_PlayerSpawn", function ( ply )
 	-- Store level as network and local player variable
 	ply.D3Stats_Level = d3stats.CalculateLevel( ply:D3Stats_GetXP() )
 	ply:SetNWInt( "D3Stats_Level", ply.D3Stats_Level )
+end )
+
+-- Initialisation
+hook.Add( "Initialize", "D3Stats_Init", function ()
+	d3stats.Storage.Initialize()
+	
+	resource.AddFile("resource/fonts/ghoulfriaoe.ttf")
+	resource.AddFile("resource/fonts/hauntaoe.ttf")
+	resource.AddFile("resource/fonts/nightaoe.ttf")
 end )
 
 local meta = FindMetaTable( "Player" )

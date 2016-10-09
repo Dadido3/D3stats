@@ -24,3 +24,27 @@ end )
 hook.Add( "D3Stats_LevelChanged", "D3Stats_ZS_LevelChanged", function ( ply, oldLevel, Level )
 	ply:CenterNotify( Color( 0, 255, 255 ), "You ascended to level " .. tostring( Level ) .. " \"" .. d3stats.Levels[Level].Name .. "\"")
 end )
+
+-- Handle "Use_Hammer" permission. TODO: Only prevent that the person can nail things
+hook.Add( "PlayerSwitchWeapon", "D3Stats_ZS_EquipHammer", function( ply, oldWeapon, newWeapon )
+	local Class = newWeapon:GetClass()
+	
+	if not ply:D3Stats_HasPermission( "Use_Hammer" ) then
+		if Class == "weapon_zs_hammer" or Class == "weapon_zs_electrohammer" then
+			ply:CenterNotify( Color( 255, 0, 0 ), string.format( d3stats.Disallow_Hold_Hammer, d3stats.GetPermissionLevel( "Use_Hammer" ) ) )
+			return true
+		end
+	end
+end )
+
+-- Handle EndRound events for statistics
+hook.Add( "EndRound", "D3Stats_ZS_EndRound", function( team )
+	local won = ( TEAM_SURVIVORS == team ) and true or false
+	
+	d3stats.Map_End( won )
+end )
+
+-- Display map statistic message when the player joined
+hook.Add( "PlayerReady", "D3Stats_Map_PlayerReady", function ( ply )
+	d3stats.Map_Message( false, ply )
+end )

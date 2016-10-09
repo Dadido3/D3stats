@@ -6,12 +6,9 @@ end
 
 -- HUD on the left top of the screen
 function d3stats.Overlay_Init()
-	local screenscale = BetterScreenScale()
-	
 	d3stats.D3StatsOverlay = vgui.Create( "D3StatsOverlay" )
-	d3stats.D3StatsOverlay:SetPos( 0, screenscale * 80 )
+	d3stats.D3StatsOverlay:SetPos( d3stats.Overlay_X, d3stats.Overlay_Y )
 	d3stats.D3StatsOverlay:SetSize( 350, 100 )
-	
 end
 
 -- Call this function from cl_targetid.lua in the gamemode. Works for ZS, needs adjustments for other gamemodes.
