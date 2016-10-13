@@ -5,19 +5,19 @@ Settings and level definitions are stored in here
 ]]
 
 -- Permissions
---  Everything not in this list will be allowed by default
---	AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyway
---  Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4, 
+--  - Everything not in this list will be allowed by default
+--	- AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyway
+--  - Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4, 
 d3stats.Permissions = {
-	["Buy_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
-	["Use_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
+	--["Buy_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
+	--["Use_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
 }
 
 -- Levels, please sort by XP
 d3stats.Levels = {
-	{ XP_needed =    500, Name = "Citizen" },
+	{ XP_needed =    500, Name = "Kleiner" },
 	{ XP_needed =   1370, Name = "Survivor" },
-	{ XP_needed =   2612, Name = "Rogue" },
+	{ XP_needed =   2612, Name = "Helper" },
 	{ XP_needed =   4225, Name = "Engineer", Permissions = { ["Buy_Hammer"] = true, ["Use_Hammer"] = true } },
 	{ XP_needed =   6209, Name = "Scout" },
 	{ XP_needed =   8564, Name = "Officer" },
@@ -49,6 +49,7 @@ d3stats.Levels = {
 	{ XP_needed = 200000, Name = "God" },
 }
 
+-- Human reward settings
 d3stats.PlayerPointsAdded_Limit = 200		-- Ignore all "PlayerPointsAdded" callbacks above this XP value
 
 -- Zombie reward is calculated as follows:	Reward = math.clamp( Static + Fraction * Human_Points, Min, Max )
@@ -58,10 +59,13 @@ d3stats.ZombieKilledHuman_Max = 1000		-- Upper XP reward clamp
 d3stats.ZombieKilledHuman_Min = 0			-- Lower XP reward clamp
 
 -- Messages TODO: Multilanguage
-d3stats.Disallow_Hold_Hammer = "You can't use the hammer until you have reached level %i"
-d3stats.MapStats_Zero = "We are playing %s."									-- Message to players who just joined
-d3stats.MapStats = "We are playing %s. Humans won %i of %i times (%.1f%%)"		-- Message to players who just joined (With statistics)
-d3stats.MapStats_End = "%s has been won %i of %i times (%.1f%%)"				-- Message to all players at the end of the round (With statistics)
+d3stats.Message = {}
+d3stats.Message.Level_Ascended = "You ascended to level %i \"%s\""
+d3stats.Message.Level_Changed = "Your level changed to level %i \"%s\""
+d3stats.Message.Disallow_Hold_Hammer = "You can't use the hammer until you have reached level %i"
+d3stats.Message.MapStats_Zero = "We are playing %s."									-- Message to players who just joined
+d3stats.Message.MapStats = "We are playing %s. Humans won %i of %i times (%.1f%%)"		-- Message to players who just joined (With statistics)
+d3stats.Message.MapStats_End = "%s has been won %i of %i times (%.1f%%)"				-- Message to all players at the end of the round (With statistics)
 
 if CLIENT then
 	-- Overlay positions

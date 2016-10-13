@@ -22,16 +22,20 @@ end )
 
 -- Message on levelchange
 hook.Add( "D3Stats_LevelChanged", "D3Stats_ZS_LevelChanged", function ( ply, oldLevel, Level )
-	ply:CenterNotify( Color( 0, 255, 255 ), "You ascended to level " .. tostring( Level ) .. " \"" .. d3stats.Levels[Level].Name .. "\"")
+	if Level > oldLevel then
+		ply:CenterNotify( Color( 0, 255, 255 ), string.format( d3stats.Message.Level_Ascended, Level, d3stats.Levels[Level].Name ) )
+	else
+		ply:CenterNotify( Color( 0, 255, 255 ), string.format( d3stats.Message.Level_Changed, Level, d3stats.Levels[Level].Name ) )
+	end
 end )
 
 -- Handle "Use_Hammer" permission. TODO: Only prevent that the person can nail things
 hook.Add( "PlayerSwitchWeapon", "D3Stats_ZS_EquipHammer", function( ply, oldWeapon, newWeapon )
 	local Class = newWeapon:GetClass()
 	
-	if not ply:D3Stats_HasPermission( "Use_Hammer" ) then
-		if Class == "weapon_zs_hammer" or Class == "weapon_zs_electrohammer" then
-			ply:CenterNotify( Color( 255, 0, 0 ), string.format( d3stats.Disallow_Hold_Hammer, d3stats.GetPermissionLevel( "Use_Hammer" ) ) )
+	if Class == "weapon_zs_hammer" or Class == "weapon_zs_electrohammer" then
+		if not ply:D3Stats_HasPermission( "Use_Hammer" ) then
+			ply:CenterNotify( Color( 255, 0, 0 ), string.format( d3stats.Message.Disallow_Hold_Hammer, d3stats.GetPermissionLevel( "Use_Hammer" ) ) )
 			return true
 		end
 	end
