@@ -7,14 +7,14 @@ Settings and level definitions are stored in here
 -- Permissions
 --  - Everything not in this list will be allowed by default
 --	- AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyway
---  - Team: Reduces count to the specified team. In ZS: TEAM_SURVIVOR = 4, 
-d3stats.Permissions = {
-	--["Buy_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
-	--["Use_Hammer"] = { AllowIfLessThan = 4, Team = 4 },
+--  - Team: AllowIfLessThan only counts the specified team. In ZS: TEAM_SURVIVOR = 4,
+D3stats.Permissions = {
+	--["Buy_Hammer"] = {AllowIfLessThan = 4, Team = 4},
+	--["Use_Hammer"] = {AllowIfLessThan = 4, Team = 4},
 }
 
 -- Levels, please sort by XP
-d3stats.Levels = {
+D3stats.Levels = {
 	{ XP_needed =    500, Name = "Kleiner" },
 	{ XP_needed =   1370, Name = "Survivor" },
 	{ XP_needed =   2612, Name = "Helper" },
@@ -50,30 +50,30 @@ d3stats.Levels = {
 }
 
 -- Human reward settings
-d3stats.PlayerPointsAdded_Limit = 200		-- Ignore all "PlayerPointsAdded" callbacks above this XP value
+D3stats.PlayerPointsAdded_Limit = 200		-- Ignore all "PlayerPointsAdded" callbacks above this XP value
 
--- Zombie reward is calculated as follows:	Reward = math.clamp( Static + Fraction * Human_Points, Min, Max )
-d3stats.ZombieKilledHuman_Fraction = 1.0	-- Amount of XP a zombie gets of the killed humans points
-d3stats.ZombieKilledHuman_Static = 100		-- Amount of XP a zombie gets for killing a human
-d3stats.ZombieKilledHuman_Max = 1000		-- Upper XP reward clamp
-d3stats.ZombieKilledHuman_Min = 0			-- Lower XP reward clamp
+-- Zombie reward is calculated as follows:	Reward = math.clamp(Static + Fraction * Human_Points, Min, Max)
+D3stats.ZombieKilledHuman_Fraction = 1.0	-- Amount of XP a zombie gets of the killed humans points
+D3stats.ZombieKilledHuman_Static = 100		-- Amount of XP a zombie gets for killing a human
+D3stats.ZombieKilledHuman_Max = 1000		-- Upper XP reward clamp
+D3stats.ZombieKilledHuman_Min = 0			-- Lower XP reward clamp
 
 -- Messages TODO: Multilanguage
-d3stats.Message = {}
-d3stats.Message.Level_Ascended = "You ascended to level %i \"%s\""
-d3stats.Message.Level_Changed = "Your level changed to level %i \"%s\""
-d3stats.Message.Disallow_Hold_Hammer = "You can't use the hammer until you have reached level %i"
-d3stats.Message.MapStats_Zero = "We are playing %s."									-- Message to players who just joined
-d3stats.Message.MapStats = "We are playing %s. Humans won %i of %i times (%.1f%%)"		-- Message to players who just joined (With statistics)
-d3stats.Message.MapStats_End = "%s has been won %i of %i times (%.1f%%)"				-- Message to all players at the end of the round (With statistics)
+D3stats.Message = {}
+D3stats.Message.Level_Ascended = "You ascended to level %i \"%s\""
+D3stats.Message.Level_Changed = "Your level changed to level %i \"%s\""
+D3stats.Message.Disallow_Hold_Hammer = "You can't use the hammer until you have reached level %i"
+D3stats.Message.MapStats_Zero = "We are playing %s."									-- Message to players who just joined
+D3stats.Message.MapStats = "We are playing %s. Humans won %i of %i times (%.1f%%)"		-- Message to players who just joined (With statistics)
+D3stats.Message.MapStats_End = "%s has been won %i of %i times (%.1f%%)"				-- Message to all players at the end of the round (With statistics)
 
 if CLIENT then
 	-- Overlay positions
-	d3stats.Overlay_X = 0
-	d3stats.Overlay_Y = 80 * math.Clamp(ScrH() / 1080, 0.6, 1) -- This needs to be redone
+	D3stats.Overlay_X = 0
+	D3stats.Overlay_Y = 80 * math.Clamp(ScrH() / 1080, 0.6, 1) -- This needs to be redone
 	
 	-- Fonts
-	surface.CreateFont( "D3Stats_OverlayFont_XP", {
+	surface.CreateFont("D3stats_OverlayFont_XP", {
 		font = "Ghoulish Fright AOE",
 		extended = false,
 		size = 22,
@@ -89,8 +89,8 @@ if CLIENT then
 		shadow = false,
 		additive = false,
 		outline = false,
-	} )
-	surface.CreateFont( "D3Stats_OverlayFont_Level", {
+	})
+	surface.CreateFont("D3stats_OverlayFont_Level", {
 		font = "Haunt AOE",
 		extended = false,
 		size = 26,
@@ -106,9 +106,9 @@ if CLIENT then
 		shadow = false,
 		additive = false,
 		outline = true,
-	} )
+	})
 	
-	d3stats.Font_Overlay_XP = "D3Stats_OverlayFont_XP"
-	d3stats.Font_Overlay_Level = "D3Stats_OverlayFont_Level"
-	d3stats.Font_TargetID = "ZSHUDFontTiny"			-- Use ZS Font
+	D3stats.Font_Overlay_XP = "D3stats_OverlayFont_XP"
+	D3stats.Font_Overlay_Level = "D3stats_OverlayFont_Level"
+	D3stats.Font_TargetID = "ZSHUDFontTiny"			-- Use ZS Font
 end

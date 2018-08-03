@@ -1,16 +1,16 @@
-d3stats = d3stats or {}
+D3stats = D3stats or {}
 
 -- Includes
-include( "sh_settings.lua" )
-include( "sh_level.lua" )
-include( "sh_concommand.lua" )
+include("sh_settings.lua")
+include("sh_level.lua")
+include("sh_concommand.lua")
 
-include( "cl_network.lua" )
-include( "cl_hud.lua" )
+include("cl_network.lua")
+include("cl_hud.lua")
 
-include( "vgui/overlay.lua" )
+include("vgui/overlay.lua")
 
--- Initialisation
-hook.Add( "Initialize", "D3Stats_Init", function ()
-	d3stats.Overlay_Init()
-end )
+-- Initialization
+hook.Add("Initialize", "D3stats_Init", function ()
+	D3stats.Overlay_Init()
+end)

@@ -1,9 +1,9 @@
-net.Receive( "D3Stats_UpdateXP", function()
-	local XP = net.ReadUInt( 32 )
+net.Receive("D3stats_UpdateXP", function()
+	local XP = net.ReadUInt(32)
 	
-	--print( "XP update: " .. tostring(XP))
+	--print("XP update: " .. tostring(XP))
 	
-	if d3stats and d3stats.D3StatsOverlay then
-		d3stats.D3StatsOverlay:StatsUpdate( XP, d3stats.CalculateLevel( XP ) )
+	if D3stats and D3stats.D3statsOverlay then
+		D3stats.D3statsOverlay:StatsUpdate(XP, D3stats.CalculateLevel(XP))
 	end
-end )
+end)
