@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 net.Receive("D3stats_UpdateXP", function()
 	local XP = net.ReadUInt(32)
 	

@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 --[[
 
 Settings and level definitions are stored in here
@@ -7,7 +12,7 @@ Settings and level definitions are stored in here
 -- Permissions
 --  - Everything not in this list will be allowed by default
 --	- AllowIfLessThan: If the amount of players who have the permission is lower than this number, allow it anyway
---  - Team: AllowIfLessThan only counts the specified team. In ZS: TEAM_SURVIVOR = 4,
+--  - Team: Only counts "AllowIfLessThan" in the specified team. In ZS: TEAM_SURVIVOR = 4,
 D3stats.Permissions = {
 	--["Buy_Hammer"] = {AllowIfLessThan = 4, Team = 4},
 	--["Use_Hammer"] = {AllowIfLessThan = 4, Team = 4},

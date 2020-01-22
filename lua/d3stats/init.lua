@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 --[[
 
 XP and statistics addon for the "Zombie Survival" gamemode

@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 -- Calculate the level from the given XP
 function D3stats.CalculateLevel(XP)
 	local Level = 1

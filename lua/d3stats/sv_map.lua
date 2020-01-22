@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 function D3stats.Map_Message(roundend, ply)
 	local map = game.GetMap()
 	local count, wins, avg_players = D3stats.Storage.Map_Get(map)

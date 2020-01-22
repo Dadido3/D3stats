@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 util.AddNetworkString("D3stats_UpdateXP")
 
 local meta = FindMetaTable("Player")

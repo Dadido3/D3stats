@@ -1,3 +1,8 @@
+-- Copyright (c) 2020 David Vogel
+-- 
+-- This software is released under the MIT License.
+-- https://opensource.org/licenses/MIT
+
 -- Delete HUD and redo if already existent. This will reset the displayed values until the next update from the server
 if D3stats.D3statsOverlay then
 	D3stats.D3statsOverlay:Remove()
