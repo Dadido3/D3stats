@@ -15,13 +15,13 @@ It works, but the addon is not finished, and probably will not be finished in th
 
 ## Usage
 
-- Create a folder called `d3stats` inside of your addon folder of your Garry's Mod server
-- Copy files by either:
+1. Create a folder called `d3stats` inside of your addon folder of your Garry's Mod server
+2. Copy files by either:
   - Clone the repository inside the created folder
-  - If you download the repository as zip, move the **content** of `D3bot-master` inside the created folder
-- You should get a folder structure like: `.../garrysmod/addons/d3stats/lua`
-- You can change settings as you wish inside of `.../garrysmod/addons/d3stats/lua/d3stats/sh_settings.lua"`
-- Done
+  - If you download the repository as zip, move the **content** of `D3stats-master` inside the created folder
+3. You should get a folder structure like: `.../garrysmod/addons/d3stats/lua`
+4. You can change settings as you wish inside of `.../garrysmod/addons/d3stats/lua/d3stats/sh_settings.lua"`
+5. Done
 
 ## License
 
